@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from .models import *
 
-# Create your views here.
+
+def author_list(request):
+    authors = Author.object.all()
+    authors_list = ""
+    for author in authors:
+        authors_list += f"<li>{author.name}</li>"
+    return HttpResponse(f"<li>{authors_list}</li>")
